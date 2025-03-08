@@ -1,0 +1,69 @@
+2025-01-08 14:57:38,231 - INFO - Use pytorch device_name: cuda
+2025-01-08 14:57:38,231 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-01-08 14:57:43,336 - INFO - Loading data from train dataset
+2025-01-08 14:58:15,816 - INFO - Use pytorch device_name: cuda
+2025-01-08 14:58:15,816 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-01-08 14:58:20,955 - INFO - Loading data from train dataset
+2025-01-08 15:12:09,189 - INFO - Use pytorch device_name: cuda
+2025-01-08 15:12:09,189 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-01-08 15:12:13,475 - INFO - Loading data from train dataset
+2025-01-08 15:22:16,696 - INFO - Use pytorch device_name: cuda
+2025-01-08 15:22:16,696 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-01-08 15:22:21,257 - INFO - Loading data from train dataset
+2025-01-08 15:30:51,832 - INFO - Loaded 63714 data pairs, 27756 positive pairs, 35958 negative pairs
+2025-01-08 19:45:11,220 - INFO - Loading data from train dataset
+2025-01-08 19:45:19,411 - INFO - Loaded data from cache: /data/home/Jianxin/MyProject/ContextCache/cache/pairs_val_pos.pkl
+2025-01-08 19:45:19,424 - INFO - Loaded 63714 data pairs, 27756 positive pairs, 35958 negative pairs
+2025-01-08 19:45:56,672 - INFO - Loading data from train dataset
+2025-01-08 19:52:04,954 - INFO - Loading data from train dataset
+2025-01-08 19:52:48,785 - INFO - Loading data from train dataset
+2025-01-08 19:56:39,566 - INFO - Loading data from train dataset
+2025-01-08 20:00:18,936 - INFO - Loading data from train dataset
+2025-01-08 20:02:50,438 - INFO - Loading data from train dataset
+2025-01-08 20:04:21,313 - INFO - Loading data from train dataset
+2025-01-08 20:18:12,600 - INFO - Loading data from train dataset
+2025-01-08 20:20:38,059 - INFO - Loading data from train dataset
+2025-01-08 20:29:39,945 - INFO - Use pytorch device_name: cuda
+2025-01-08 20:29:39,946 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-01-08 20:29:44,468 - INFO - Loading data from train dataset
+2025-01-08 20:36:19,410 - INFO - Loaded 54728 data pairs, 27756 positive pairs, 26972 negative pairs
+2025-01-09 14:10:36,665 - INFO - Use pytorch device_name: cuda
+2025-01-09 14:10:36,665 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-01-09 14:10:45,980 - INFO - Loading data from train dataset
+2025-01-09 14:17:17,802 - INFO - Loaded 54728 data pairs, 27756 positive pairs, 26972 negative pairs
+2025-01-10 16:18:37,448 - INFO - Loading data from train dataset
+2025-01-10 16:19:37,186 - INFO - Use pytorch device_name: cuda
+2025-01-10 16:19:37,186 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-01-10 16:19:43,028 - INFO - Loading data from train dataset
+2025-01-10 16:20:34,472 - INFO - Use pytorch device_name: cuda
+2025-01-10 16:20:34,472 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-01-10 16:20:39,712 - INFO - Loading data from train dataset
+2025-01-10 16:20:55,969 - INFO - Use pytorch device_name: cuda
+2025-01-10 16:20:55,969 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-01-10 16:21:00,706 - INFO - Loading data from train dataset
+2025-01-10 16:21:37,602 - INFO - Use pytorch device_name: cuda
+2025-01-10 16:21:37,603 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-01-10 16:21:42,034 - INFO - Loading data from train dataset
+2025-01-10 18:17:16,618 - INFO - Use pytorch device_name: cuda
+2025-01-10 18:17:16,618 - INFO - Load pretrained SentenceTransformer: paraphrase-albert-small-v2
+2025-01-10 18:17:22,254 - INFO - Loading data from train dataset
+2025-01-10 18:17:48,872 - INFO - Use pytorch device_name: cuda
+2025-01-10 18:17:48,872 - INFO - Load pretrained SentenceTransformer: paraphrase-albert-small-v2
+2025-01-10 18:17:54,975 - INFO - Loading data from train dataset
+2025-01-10 18:19:37,521 - INFO - Loaded 54728 data pairs, 27756 positive pairs, 26972 negative pairs
+2025-01-10 20:16:22,614 - INFO - Use pytorch device_name: cuda
+2025-01-10 20:16:22,615 - INFO - Load pretrained SentenceTransformer: paraphrase-albert-small-v2
+2025-01-10 20:16:29,182 - INFO - Loading data from train dataset
+2025-01-10 20:25:18,713 - INFO - Loaded 273344 data pairs, 138678 positive pairs, 134666 negative pairs
+2025-01-10 22:12:25,792 - INFO - Use pytorch device_name: cuda
+2025-01-10 22:12:25,792 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-01-10 22:12:32,140 - INFO - Loading data from train dataset
+2025-01-10 22:58:58,383 - INFO - Use pytorch device_name: cuda
+2025-01-10 22:58:58,383 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-01-10 22:59:04,293 - INFO - Loading data from train dataset
+2025-01-12 10:58:52,474 - INFO - Use pytorch device_name: cuda
+2025-01-12 10:58:52,474 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-01-12 10:59:36,041 - INFO - Use pytorch device_name: cuda
+2025-01-12 10:59:36,041 - INFO - Load pretrained SentenceTransformer: all-mpnet-base-v2
+2025-01-12 10:59:41,555 - INFO - Loading data from train dataset
+2025-01-12 11:18:54,589 - INFO - Loaded 273344 data pairs, 138678 positive pairs, 134666 negative pairs
