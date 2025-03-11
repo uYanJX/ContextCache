@@ -19,7 +19,9 @@ class DialogueSimilarityDataset(Dataset):
                  batch_size=512,
                  cache_dir="/data/home/Jianxin/MyProject/ContextCache/cache/test",
                  log=None,
-                 device=None):
+                 device=None,
+                 seed=42
+                 ):
         """
         针对BatchDialogueSimilarityModel设计的数据集
         
@@ -34,6 +36,11 @@ class DialogueSimilarityDataset(Dataset):
             log: 日志对象
             device: 设备
         """
+        # 设置随机种子确保可复现性
+        random.seed(seed)
+        np.random.seed(seed)
+        torch.manual_seed(seed)
+        
         self.logger = log
         self.device = device if device else torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         self.max_seq_length = max_seq_length
@@ -134,33 +141,120 @@ class DialogueSimilarityDataset(Dataset):
                 positive_embeddings = np.array([embeddings[s] for s in positive])
                 
                 hard_neg = item["neg"]
+                for num_item in range(3,self.n_candidates): 
+                    # 收集足够的负样本
+                    negative_samples = self._collect_negative_samples(
+                        hard_neg, 
+                        embeddings, 
+                        num_item,  # 减1是因为已经有一个正样本
+                        query,
+                        origin_data
+                    )
+                            
+                    # 组合查询、正样本和负样本
+                    all_dialogues = [query_embeddings]
+                    all_dialogues.extend(negative_samples)
+                    # 包含正样本的构造
+                    pos_idx = random.randint(1, len(all_dialogues))
+                    all_dialogues.insert(pos_idx, positive_embeddings)
+                    
+                    num_to_fill = self.n_candidates - len(all_dialogues)+1
+                    # 如果不足，则添加空数组
+                    if num_to_fill > 0:
+                        for _ in range(num_to_fill):
+                            all_dialogues.append(np.array([]))  
+                    
+                    # 创建掩码
+                    masks = []
+                    for dialogue in all_dialogues:
+                        mask = np.zeros(self.max_seq_length, dtype=bool)
+                        if len(dialogue) < self.max_seq_length:
+                            mask[len(dialogue):] = True
+                        masks.append(mask)
+                    
+                    # 添加到数据集
+                    dataset.append({
+                        'dialogues': [self._pad_sequence(d) for d in all_dialogues],
+                        'masks': masks,
+                        'pos_idx': pos_idx-1
+                    })
+                
+                if  key == "variations":
+                    new_query = np.array([query_embeddings[-1]])
+                    new_pos = np.array([positive_embeddings[-1]])
+                    negative_samples = self._collect_negative_samples(
+                        [hard_neg[-1]], 
+                        embeddings, 
+                        self.n_candidates-1,  # 减1是因为已经有一个正样本
+                        query,
+                        origin_data
+                    )
+                    # 组合查询、正样本和负样本
+                    all_dialogues = [new_query]
+                    all_dialogues.extend(negative_samples)
+                    # 包含正样本的构造
+                    pos_idx = random.randint(1, len(all_dialogues))
+                    all_dialogues.insert(pos_idx, new_pos)
+
+                    # 创建掩码
+                    masks = []
+                    for dialogue in all_dialogues:
+                        mask = np.zeros(self.max_seq_length, dtype=bool)
+                        if len(dialogue) < self.max_seq_length:
+                            mask[len(dialogue):] = True
+                        masks.append(mask)
+                    
+                    # 添加到数据集
+                    dataset.append({
+                        'dialogues': [self._pad_sequence(d) for d in all_dialogues],
+                        'masks': masks,
+                        'pos_idx': pos_idx-1
+                    })
+                    
+        
+        # 构造无正样本的数据集
+        for item in tqdm(cleaned_data, desc="Processing"):
+            if "original" not in item:
+                continue
+                
+            query = item["original"]
+            query_embeddings = np.array([embeddings[s] for s in query])
+            
+            hard_neg = item["neg"]
+            for num_item in range(3,self.n_candidates+1):
                 # 收集足够的负样本
                 negative_samples = self._collect_negative_samples(
                     hard_neg, 
                     embeddings, 
-                    self.n_candidates - 1,  # 减1是因为已经有一个正样本
+                    num_item, 
                     query,
                     origin_data
                 )
                 
-                # 组合查询、正样本和负样本
-                all_dialogues = [query_embeddings, positive_embeddings]
-                all_dialogues.extend(negative_samples)
+                # 组合查询和负样本
+                all_dialogues_nopos = [query_embeddings]
+                all_dialogues_nopos.extend(negative_samples)
+                num_to_fill = self.n_candidates - len(all_dialogues_nopos)+1
+
+                # 如果不足，则添加空数组
+                if num_to_fill > 0:
+                    for _ in range(num_to_fill):
+                        all_dialogues_nopos.append(np.array([]))  
                 
-                # 创建掩码
-                masks = []
-                for dialogue in all_dialogues:
+                masks_nopos = []
+                for dialogue in all_dialogues_nopos:
                     mask = np.zeros(self.max_seq_length, dtype=bool)
                     if len(dialogue) < self.max_seq_length:
                         mask[len(dialogue):] = True
-                    masks.append(mask)
-                
-                # 添加到数据集
+                    masks_nopos.append(mask)        
+                            
                 dataset.append({
-                    'dialogues': [self._pad_sequence(d) for d in all_dialogues],
-                    'masks': masks
-                })
-        
+                    'dialogues': [self._pad_sequence(d) for d in all_dialogues_nopos],
+                    'masks': masks,
+                    'pos_idx':  -1
+                })               
+            
+    
         # 打乱数据集
         random.shuffle(dataset)
         return dataset
@@ -169,8 +263,8 @@ class DialogueSimilarityDataset(Dataset):
         """收集负样本"""
         negative_samples = []
         
-        # hard_neg_embeddings = np.array([embeddings[s] for s in neg_data])
-        # negative_samples.append(hard_neg_embeddings)
+        hard_neg_embeddings = np.array([embeddings[s] for s in neg_data])
+        negative_samples.append(hard_neg_embeddings)
         
         if len(query) > 1:
             query_embeddings = np.array([embeddings[s] for s in query])
@@ -195,11 +289,16 @@ class DialogueSimilarityDataset(Dataset):
             random_neg_embeddings = np.array([embeddings[s] for s in random_neg])
             negative_samples.append(random_neg_embeddings)
             left -= 1
-        
+            
         return negative_samples
     
     def _pad_sequence(self, sequence):
         """对序列进行填充或截断"""
+        if len(sequence) == 0:
+            # 处理空序列的情况
+            embed_dim = 768
+            return np.zeros((self.max_seq_length, embed_dim))
+        
         if len(sequence) > self.max_seq_length:
             return sequence[:self.max_seq_length]
         
@@ -221,8 +320,14 @@ class DialogueSimilarityDataset(Dataset):
         # 转换为张量
         dialogues = torch.tensor(np.array(item['dialogues']), dtype=torch.float32)
         masks = torch.tensor(np.array(item['masks']), dtype=torch.bool)
+        positive_idx = torch.tensor(item['pos_idx'])
         
-        return dialogues, masks
+        # # 创建one-hot编码
+        # n_candidates = self.n_candidates - 1  # 减去查询本身
+        # labels_onehot = torch.zeros(n_candidates, dtype=torch.float32)
+        # labels_onehot[positive_idx] = 1.0
+        
+        return dialogues, masks, positive_idx
     
     def __len__(self):
         return len(self.data)
@@ -291,16 +396,19 @@ def create_dataloader(dataset, batch_size, shuffle=True, num_workers=4):
         """自定义批处理函数，将多个样本组合成一个批次"""
         dialogues_batch = []
         masks_batch = []
+        pos_idx = []
         
-        for dialogues, masks in batch:
+        for dialogues, masks, idx in batch:
             dialogues_batch.append(dialogues)
             masks_batch.append(masks)
+            pos_idx.append(idx)
         
         # 堆叠为形状[b, n, max_seq_length, dim]的张量
         dialogues_tensor = torch.stack(dialogues_batch)
         masks_tensor = torch.stack(masks_batch)
+        idx_tensor = torch.stack(pos_idx)
         
-        return dialogues_tensor, masks_tensor
+        return dialogues_tensor, masks_tensor, idx_tensor
     
     return DataLoader(
         dataset,

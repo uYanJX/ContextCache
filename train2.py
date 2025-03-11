@@ -3,6 +3,7 @@ import torch
 import logging
 import argparse
 import torch.optim as optim
+import torch.nn.functional as F
 
 from tqdm import tqdm
 from pathlib import Path
@@ -22,10 +23,11 @@ class DialogueTrainer:
         # Basic configuration
         self.config = {
             'embed_dim': 768,
-            'num_heads': 8,
+            'label_smoothing': 0.05,
+            'num_heads': 4,
             'num_layers': 2,
             'dropout_rate': 0.15,
-            'temperature': 0.07,
+            'temperature': 0.3,
             'batch_size': 256,
             'eval_batch_size': 64,
             'num_epochs': 30,
@@ -145,6 +147,36 @@ class DialogueTrainer:
         
         return train_loader, val_loader
     
+    def label_smoothing_loss(self, logits, target, smoothing=0.1):
+        """
+        计算带有标签平滑的损失
+        
+        Args:
+            logits: 模型输出的预测分数 [batch_size, n_classes]
+            target: 目标标签 [batch_size]
+            smoothing: 平滑参数，通常为0.1或0.2
+            
+        Returns:
+            计算得到的平滑损失
+        """
+        batch_size, n_classes = logits.size()
+        
+        # 创建一个全为平滑值的标签张量
+        smooth_target = torch.full(logits.size(), 
+                                smoothing / (n_classes - 1), 
+                                device=logits.device)
+        
+        # 将真实标签位置设置为1-smoothing
+        smooth_target.scatter_(1, target.unsqueeze(1), 1.0 - smoothing)
+        
+        # 计算对数概率
+        log_probs = F.log_softmax(logits, dim=1)
+        
+        # 计算损失
+        loss = -(smooth_target * log_probs).sum(dim=1).mean()
+        
+        return loss
+
     def train(self):
         """Train the model"""
         # Prepare data
@@ -217,13 +249,26 @@ class DialogueTrainer:
         correct_predictions = 0
         
         with context:
-            for dialogues, masks in progress_bar:
+            for dialogues, masks, labels in progress_bar:
                 # Move to device
                 dialogues = dialogues.to(self.device)
                 masks = masks.to(self.device) if masks is not None else None
+                labels = labels.to(self.device)
                 
                 # Forward pass
-                similarities, loss = model(dialogues, masks)
+                similarities = model(dialogues, masks)
+                
+                # Calculate InfoNCE loss
+                # Apply temperature scaling
+                logits = similarities / self.config['temperature']
+
+                # 根据是否训练阶段选择不同的损失计算方式
+                if is_training:
+                    # 训练时使用标签平滑
+                    loss = self.label_smoothing_loss(logits, labels, smoothing=self.config['label_smoothing'])
+                else:
+                    # 验证时使用标准交叉熵
+                    loss = F.cross_entropy(logits, labels)
                 
                 # Calculate accuracy: first candidate is the correct one
                 batch_size = dialogues.size(0)
@@ -231,8 +276,10 @@ class DialogueTrainer:
                 
                 # Get predictions (highest similarity)
                 predictions = torch.argmax(similarities, dim=1)
-                correct_predictions += (predictions == 0).sum().item()  # First candidate is correct
-                
+                correct_predictions += (predictions == labels).sum().item()  # First candidate is correct
+                # print(predictions.size(),labels.size())
+                # print(predictions)
+                # print(labels)
                 # Backward pass and optimization (if training)
                 if is_training and optimizer is not None:
                     optimizer.zero_grad()
@@ -309,7 +356,7 @@ if __name__ == "__main__":
                         type=str, 
                         default= "/data/home/Jianxin/MyProject/ContextCache/data/new/val.jsonl", 
                         help="Path to data file")
-    parser.add_argument("--gpu_id", type=int, default=0, help="GPU ID to use")
+    parser.add_argument("--gpu_id", type=int, default=2, help="GPU ID to use")
     parser.add_argument("--evaluate", default=False, help="Evaluate model instead of training")
     parser.add_argument("--model_path", type=str, default= None,help="Path to model for evaluation")
     
