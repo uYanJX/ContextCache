@@ -1,0 +1,518 @@
+[
+    {
+        "origin": "Hugging Face Hub is a platform to host Git-based models, datasets, and Spaces.",
+        "similar": "Hugging Face Hub serves as a repository for Git-based models, datasets, and Spaces."
+    },
+    {
+        "origin": "Transformers is a state-of-the-art machine learning library for Pytorch, TensorFlow, and JAX.",
+        "similar": "Transformers is a cutting-edge machine learning library for Pytorch, TensorFlow, and JAX."
+    },
+    {
+        "origin": "Diffusers are state-of-the-art diffusion models for image and audio generation in PyTorch.",
+        "similar": "PyTorch has cutting-edge diffusers for the production of images and sound."
+    },
+    {
+        "origin": "Datasets are a platform to access and share datasets for computer vision, audio, and NLP tasks.",
+        "similar": "Datasets provide a means to access and distribute data for computer vision, audio, and NLP applications."
+    },
+    {
+        "origin": "Gradio is a tool to build machine learning demos and other web apps in just a few lines of Python.",
+        "similar": "Gradio enables developers to create machine learning demos and web applications with a few lines of Python code."
+    },
+    {
+        "origin": "The Hub Python Library is a client library for the HF Hub that allows you to manage repositories from your Python runtime.",
+        "similar": "The Python Library for the HF Hub provides the ability to manage repositories from within a Python environment."
+    },
+    {
+        "origin": "Huggingface.js is a collection of JS libraries to interact with Hugging Face, with TS types included.",
+        "similar": "Hugging Face.js is a set of JavaScript libraries that allow for interaction with Hugging Face, complete with TypeScript types."
+    },
+    {
+        "origin": "The Inference API is a platform that allows you to use more than 50k models through a public inference API, with scalability built-in.",
+        "similar": "The Inference API provides a platform with the capacity to access over 50k models through a public API, and scalability is already incorporated."
+    },
+    {
+        "origin": "Inference Endpoints are a platform that allows you to easily deploy your model to production on dedicated, fully managed infrastructure.",
+        "similar": "Inference Endpoints provide a convenient way to deploy your model to production on dedicated, managed infrastructure."
+    },
+    {
+        "origin": "Accelerate is a tool that allows you to easily train and use PyTorch models with multi-GPU, TPU, mixed-precision.",
+        "similar": "Accelerate facilitates the training and utilization of PyTorch models with multi-GPU, TPU, and mixed-precision in a straightforward manner."
+    },
+    {
+        "origin": "Optimum is a tool that allows for fast training and inference of HF Transformers with easy-to-use hardware optimization tools.",
+        "similar": "Optimum is a platform that facilitates the swift training and application of HF Transformers with user-friendly hardware optimization capabilities."
+    },
+    {
+        "origin": "Tokenizers are fast tokenizers optimized for both research and production.",
+        "similar": "Tokenizers that are designed to be both efficient and effective for both research and production purposes are available."
+    },
+    {
+        "origin": "The Course is a platform that teaches about natural language processing using libraries from the HF ecosystem.",
+        "similar": "This Course provides instruction on natural language processing, utilizing libraries from the HF environment."
+    },
+    {
+        "origin": "The Deep RL Course is a platform that teaches about deep reinforcement learning using libraries from the HF ecosystem.",
+        "similar": "HF ecosystem libraries are employed to instruct deep reinforcement learning in the Deep RL Course platform."
+    },
+    {
+        "origin": "Evaluate is a tool that allows for easier and more standardized evaluation and reporting of model performance.",
+        "similar": "Assessing is a tool that facilitates simpler and more consistent assessment and reporting of model performance."
+    },
+    {
+        "origin": "Tasks are a platform that provides demos, use cases, models, datasets, and more for ML tasks.",
+        "similar": "Tasks is a platform that furnishes demos, examples, models, datasets, and more for Machine Learning projects."
+    },
+    {
+        "origin": "Datasets-server is an API that allows access to the contents, metadata, and basic statistics of all Hugging Face Hub datasets.",
+        "similar": "Datasets-server provides an API that enables users to access the data, metadata, and basic statistics of all Hugging Face Hub datasets."
+    },
+    {
+        "origin": "Simulate is a tool that allows for the creation and sharing of simulation environments for intelligent agents and synthetic data generation.",
+        "similar": "Simulation is a platform that facilitates the building and dissemination of simulation settings for artificial agents and artificial data production."
+    },
+    {
+        "origin": "Amazon SageMaker is a platform that allows for the training and deployment of Transformer models with Amazon SageMaker and Hugging Face DLCs.",
+        "similar": "Amazon SageMaker, in combination with Hugging Face DLCs, provides a platform for training and deploying Transformer models."
+    },
+    {
+        "origin": "timm is a platform that provides state-of-the-art computer vision models, layers, utilities, optimizers, schedulers, data-loaders, augmentations, and training/evaluation scripts.",
+        "similar": "Timm is a platform furnishing cutting-edge computer vision models, layers, utilities, optimizers, schedulers, data-loaders, augmentations, and training/evaluation scripts."
+    },
+    {
+        "origin": "Safetensors are a simple, safe way to store and distribute tensors.",
+        "similar": "Safetensors provide an uncomplicated and secure method of keeping and disseminating tensors."
+    },
+    {
+        "origin": "LOAD_HU is a documentation page.",
+        "similar": "LOAD_HU is a web page devoted to providing information."
+    },
+    {
+        "origin": "No, LOAD_HU doesn't exist in v2.10.0.",
+        "similar": "LOAD_HU is not a feature of v2.10.0."
+    },
+    {
+        "origin": "You can find LOAD_HU documentation on the main version. Click [here](/docs/datasets/main/en/load_hu) to redirect to the main version of the documentation.",
+        "similar": "The LOAD_HU documentation can be located on the main version. Click [here](/docs/datasets/main/en/load_hu) to be taken to the main version of the documentation."
+    },
+    {
+        "origin": "The purpose of the Datasets documentation is to provide information on how to use the Datasets library.",
+        "similar": "The objective of the Datasets library documentation is to furnish guidance on its utilization."
+    },
+    {
+        "origin": "The different sections of the Datasets documentation are Get started, Tutorials, How-to guides, General usage, Audio, Vision, Text, Tabular, Dataset repository, Conceptual guides, and Reference.",
+        "similar": "The various parts of the Datasets documentation include: Introduction, Tutorials, How-to guides, General usage, Audio, Vision, Text, Tabular, Dataset repository, Conceptual guides, and Reference."
+    },
+    {
+        "origin": "To use Datasets with JAX, you need to install `jax` and `jaxlib` as `pip install datasets[jax]`. Then you can get JAX arrays (numpy-like) by setting the format of the dataset to `jax`.",
+        "similar": "In order to utilize Datasets with JAX, you should install `jax` and `jaxlib` by running `pip install datasets[jax]`. Afterwards, you can obtain JAX arrays (similar to numpy) by setting the format of the dataset to `jax`."
+    },
+    {
+        "origin": "A Dataset object is a wrapper of an Arrow table, which allows fast reads from arrays in the dataset to JAX arrays.",
+        "similar": "A Dataset object serves as an interface to an Arrow table, enabling rapid conversion of arrays in the dataset to JAX arrays."
+    },
+    {
+        "origin": "When setting the format of a DatasetDict to jax, all the Datasets there will be formatted as jax.",
+        "similar": "When formatting a DatasetDict to jax, all the Datasets will be converted to the jax format."
+    },
+    {
+        "origin": "To load the data in the device of your choice, you can specify the device argument, but note that jaxlib.xla_extension.Device is not supported as it\u2019s not serializable with neither pickle not dill, so you\u2019ll need to use its string identifier instead.",
+        "similar": "You can specify the device argument to load the data in the device of your choice, however, jaxlib.xla_extension.Device cannot be used as it is not serializable with either pickle or dill, so you must use its string identifier."
+    },
+    {
+        "origin": "If the device argument is not provided to with_format then it will use the default device which is jax.devices()[0].",
+        "similar": "If the device argument is not specified for with_format, then the default device, jax.devices()[0], will be used."
+    },
+    {
+        "origin": "By default, N-dimensional arrays are considered as nested lists.",
+        "similar": "N-dimensional arrays are typically viewed as nested lists."
+    },
+    {
+        "origin": "A DeviceArray object is a numpy-like array, which is the output of a JAX formatted dataset.",
+        "similar": "A DeviceArray object is an array with a structure similar to numpy, produced as the result of a JAX formatted dataset."
+    },
+    {
+        "origin": "ClassLabel data is properly converted to arrays.",
+        "similar": "The conversion of ClassLabel data to arrays is done correctly."
+    },
+    {
+        "origin": "The Image and Audio feature types are also supported.",
+        "similar": "The Image and Audio types are also accommodated."
+    },
+    {
+        "origin": "To use the Image feature type, you\u2019ll need to install the vision extra as pip install datasets[vision].",
+        "similar": "You'll have to pip install datasets[vision] to be able to utilize the Image feature type."
+    },
+    {
+        "origin": "No, it doesn't exist in version 2.10.0.",
+        "similar": "Version 2.10.0 does not have it."
+    },
+    {
+        "origin": "You can find it on the main version of the documentation by clicking on the provided link.",
+        "similar": "You can access the main version of the documentation by clicking on the link given."
+    },
+    {
+        "origin": "No, there is no alternative mentioned in the given document.",
+        "similar": "No other option is specified in the given document."
+    },
+    {
+        "origin": "No, it doesn't exist in version 2.10.0.",
+        "similar": "Version 2.10.0 does not include it."
+    },
+    {
+        "origin": "You can find it on the main version of the documentation by clicking on the provided link.",
+        "similar": "You can access the main version of the documentation by clicking on the link given."
+    },
+    {
+        "origin": "The document doesn't mention any alternative to the UPLOAD_DATASE documentation page in version 2.10.0.",
+        "similar": "No alternative to the UPLOAD_DATASE documentation page in version 2.10.0 is mentioned in the document."
+    },
+    {
+        "origin": "No, the documentation page STREA doesn't exist in version 2.10.0.",
+        "similar": "Version 2.10.0 does not contain the documentation page STREA."
+    },
+    {
+        "origin": "You can find the documentation page STREA on the main version. Click on the provided link to redirect to the main version of the documentation.",
+        "similar": "The documentation page for STREA can be accessed by clicking on the link which will take you to the main version."
+    },
+    {
+        "origin": "The Datasets documentation provides information on how to use and work with datasets in the Hugging Face library.",
+        "similar": "The Hugging Face library's Datasets documentation offers guidance on utilizing and manipulating datasets."
+    },
+    {
+        "origin": "The Datasets documentation is divided into different sections such as Get started, Tutorials, How-to guides, Audio, Vision, Text, Tabular, Dataset repository, Conceptual guides, and Reference.",
+        "similar": "The Datasets documentation is broken down into various categories including Get going, Tutorials, How-to guides, Audio, Vision, Text, Tabular, Dataset library, Conceptual guides, and Reference."
+    },
+    {
+        "origin": "Yes, Datasets supports access to cloud storage providers through a `fsspec` FileSystem implementations.",
+        "similar": "Datasets can be accessed from cloud storage providers using a `fsspec` FileSystem implementation."
+    },
+    {
+        "origin": "Some examples of supported cloud storage providers in Datasets are Amazon S3, Google Cloud Storage, Azure Blob/DataLake, Dropbox, and Google Drive.",
+        "similar": "Examples of cloud storage providers that are compatible with Datasets include Amazon S3, Google Cloud Storage, Azure Blob/DataLake, Dropbox, and Google Drive."
+    },
+    {
+        "origin": "You can load and save datasets from cloud storage in Datasets using the `fsspec` FileSystem implementations.",
+        "similar": "Datasets allows you to upload and store data sets in the cloud with the help of `fsspec` FileSystem implementations."
+    },
+    {
+        "origin": "This guide is about how to save and load datasets with any cloud storage.",
+        "similar": "This guide provides instructions on how to store and retrieve datasets using any cloud storage."
+    },
+    {
+        "origin": "The examples of cloud storage mentioned in this guide are S3, Google Cloud Storage, and Azure Blob Storage.",
+        "similar": "This guide mentions S3, Google Cloud Storage, and Azure Blob Storage as examples of cloud storage."
+    },
+    {
+        "origin": "You can install the S3 FileSystem implementation by running the command \"pip install s3fs\".",
+        "similar": "You can get the S3 FileSystem implementation up and running by executing the command \"pip install s3fs\"."
+    },
+    {
+        "origin": "To use an anonymous connection, use \"anon=True\". Otherwise, include your \"aws_access_key_id\" and \"aws_secret_access_key\" whenever you are interacting with a private S3 bucket.",
+        "similar": "If you wish to keep your connection anonymous, set \"anon=True\". Otherwise, make sure to provide your \"aws_access_key_id\" and \"aws_secret_access_key\" when accessing a private S3 bucket."
+    },
+    {
+        "origin": "You can create your FileSystem instance for S3 by importing s3fs and running \"fs = s3fs.S3FileSystem(**storage_options)\".",
+        "similar": "By importing s3fs and executing \"fs = s3fs.S3FileSystem(**storage_options)\", you can generate a FileSystem instance for S3."
+    },
+    {
+        "origin": "You can install the Google Cloud Storage implementation by running the command \"conda install -c conda-forge gcsfs\" or \"pip install gcsfs\".",
+        "similar": "To install the Google Cloud Storage implementation, you can execute either \"conda install -c conda-forge gcsfs\" or \"pip install gcsfs\" command."
+    },
+    {
+        "origin": "You can define your credentials for Google Cloud Storage by specifying \"token\": \"anon\" for an anonymous connection, or \"project\": \"my-google-project\" for using your default gcloud credentials or from the google metadata service.",
+        "similar": "You can set your credentials for Google Cloud Storage by indicating \"token\": \"anon\" for an anonymous connection, or \"project\": \"my-google-project\" to use your default gcloud credentials or from the google metadata service."
+    },
+    {
+        "origin": "You can create your FileSystem instance for Google Cloud Storage by importing gcsfs and running \"fs = gcsfs.GCSFileSystem(**storage_options)\".",
+        "similar": "By importing gcsfs and executing \"fs = gcsfs.GCSFileSystem(**storage_options)\", you can generate a FileSystem instance for Google Cloud Storage."
+    },
+    {
+        "origin": "You can install the Azure Blob Storage implementation by running the command \"conda install -c conda-forge adlfs\" or \"pip install adlfs\".",
+        "similar": "You can get the Azure Blob Storage implementation up and running by executing the command \"conda install -c conda-forge adlfs\" or \"pip install adlfs\"."
+    },
+    {
+        "origin": "You can define your credentials for Azure Blob Storage by specifying \"anon\": True for an anonymous connection, or \"account_name\": ACCOUNT_NAME and \"account_key\": ACCOUNT_KEY for the gen 2 filesystem, or \"tenant_id\": TENANT_ID, \"client_id\": CLIENT_ID, and \"client_secret\": CLIENT_SECRET for the gen 1 filesystem.",
+        "similar": "To set up your credentials for Azure Blob Storage, you can use \"anon\": True for an anonymous connection, or \"account_name\": ACCOUNT_NAME and \"account_key\": ACCOUNT_KEY for the gen 2 filesystem, or \"tenant_id\": TENANT_ID, \"client_id\": CLIENT_ID, and \"client_secret\": CLIENT_SECRET for the gen 1 filesystem."
+    },
+    {
+        "origin": "You can create your FileSystem instance for Azure Blob Storage by importing adlfs and running \"fs = adlfs.AzureBlobFileSystem(**storage_options)\".",
+        "similar": "By importing adlfs and executing \"fs = adlfs.AzureBlobFileSystem(**storage_options)\", you can generate your own FileSystem instance for Azure Blob Storage."
+    },
+    {
+        "origin": "You can download and prepare a dataset into a cloud storage by specifying a remote \"output_dir\" in \"download_and_prepare\". Don\u2019t forget to use the previously defined \"storage_options\" containing your credentials to write into a private cloud storage.",
+        "similar": "By specifying a remote \"output_dir\" in \"download_and_prepare\", you can download and store a dataset into the cloud storage. Remember to include the \"storage_options\" with your credentials to enable writing into a private cloud storage."
+    },
+    {
+        "origin": "The \"download_and_prepare\" method works in two steps: 1) it first downloads the raw data files (if any) in your local cache, and 2) then it generates the dataset in Arrow or Parquet format in your cloud storage by iterating over the raw data files.",
+        "similar": "The \"download_and_prepare\" method is a two-step process: it first stores the raw data files (if any) in the local cache, and then it iterates over these files to create the dataset in Arrow or Parquet format in the cloud storage."
+    },
+    {
+        "origin": "You can load a dataset builder from the Hugging Face Hub by running \"builder = load_dataset_builder(\"imdb\")\" and then running \"builder.download_and_prepare(output_dir, storage_options=storage_options, file_format=\"parquet\")\".",
+        "similar": "To access a dataset builder from the Hugging Face Hub, execute \"builder = load_dataset_builder(\"imdb\")\" and then \"builder.download_and_prepare(output_dir, storage_options=storage_options, file_format=\"parquet\")\"."
+    },
+    {
+        "origin": "You can load a dataset builder using a loading script by running \"builder = load_dataset_builder(\"path/to/local/loading_script/loading_script.py\")\" and then running \"builder.download_and_prepare(output_dir, storage_options=storage_options, file_format=\"parquet\")\".",
+        "similar": "To load a dataset builder using a loading script, execute \"builder = load_dataset_builder(\"path/to/local/loading_script/loading_script.py\")\" and then \"builder.download_and_prepare(output_dir, storage_options=storage_options, file_format=\"parquet\")\"."
+    },
+    {
+        "origin": "You can use your own data files by following the instructions in the \"how to load local and remote files\" section of the guide.",
+        "similar": "By adhering to the directions in the \"how to load local and remote files\" section of the guide, you can employ your own data files."
+    },
+    {
+        "origin": "It is recommended to save the files as compressed Parquet files to optimize I/O.",
+        "similar": "It is suggested to store the files as compressed Parquet files for optimized I/O."
+    },
+    {
+        "origin": "Yes, the size of the shards can be specified using `max_shard_size`.",
+        "similar": "It is possible to determine the size of the shards by using `max_shard_size`."
+    },
+    {
+        "origin": "Dask is a parallel computing library and it has a pandas-like API for working with larger than memory Parquet datasets in parallel. Dask can use multiple threads or processes on a single machine, or a cluster of machines to process data in parallel. Dask supports local data but also data from a cloud storage. It can be used to load a dataset saved as sharded Parquet files.",
+        "similar": "Dask is a parallel computing library that offers a pandas-like API for processing Parquet datasets that exceed memory capacity. It can be employed to utilize multiple threads or processes on a single machine, or a cluster of machines, and it is compatible with both local and cloud-based data. Furthermore, it is capable of loading datasets stored as sharded Parquet files."
+    },
+    {
+        "origin": "Serialized datasets can be saved to cloud storage using `Dataset.save_to_disk()`.",
+        "similar": "`Dataset.save_to_disk()` can be used to store serialized datasets in cloud storage."
+    },
+    {
+        "origin": "Files can be listed from a cloud storage using `fs.ls` with the FileSystem instance `fs`.",
+        "similar": "Using the FileSystem instance `fs`, `fs.ls` can be used to list files from a cloud storage."
+    },
+    {
+        "origin": "Serialized datasets can be loaded from cloud storage using `Dataset.load_from_disk()`.",
+        "similar": "`Dataset.load_from_disk()` can be used to retrieve serialized datasets from cloud storage."
+    },
+    {
+        "origin": "This document is the documentation for the Datasets library, providing information on how to use and process various types of datasets.",
+        "similar": "This document serves as a guide to the Datasets library, offering instructions on how to utilize and manipulate different types of datasets."
+    },
+    {
+        "origin": "The different sections in this document include getting started, tutorials, how-to guides, general usage, audio, vision, text, tabular, dataset repository, conceptual guides, and reference.",
+        "similar": "This document is divided into sections such as initiation, tutorials, instructions, general utilization, sound, sight, written material, tabular data, dataset depository, conceptual instructions, and reference."
+    },
+    {
+        "origin": "The audio section of the document covers how to load, process, and create audio datasets, including specific methods for resampling the sampling rate and using map() with audio datasets.",
+        "similar": "This document provides information on how to load, process, and generate audio datasets, with particular focus on techniques such as resampling the sampling rate and the utilization of map() with audio datasets."
+    },
+    {
+        "origin": "The cast_column() function is used to cast a column to another feature to be decoded, and when used with the Audio feature, it can be used to resample the sampling rate.",
+        "similar": "The cast_column() function can be employed to transform a column into a different feature to be decoded, and when combined with the Audio feature, it can be used to alter the sampling rate."
+    },
+    {
+        "origin": "Audio files are decoded and resampled on-the-fly to 16kHz.",
+        "similar": "The decoding and resampling of audio files is done in real time to 16kHz."
+    },
+    {
+        "origin": "The map() function helps preprocess the entire dataset at once.",
+        "similar": "The map() function assists in preprocessing the whole dataset in one go."
+    },
+    {
+        "origin": "For pretrained speech recognition models, you need to load a feature extractor and tokenizer and combine them in a processor.",
+        "similar": "You must combine a feature extractor, tokenizer, and processor to utilize pretrained speech recognition models."
+    },
+    {
+        "origin": "For fine-tuned speech recognition models, you only need to load a processor.",
+        "similar": "A processor is all that is required to utilize a fine-tuned speech recognition model."
+    },
+    {
+        "origin": "Include the audio column in the preprocessing function.",
+        "similar": "Incorporate the audio feature into the preprocessing routine."
+    },
+    {
+        "origin": "No, the documentation page SHAR doesn't exist in version 2.10.0.",
+        "similar": "Version 2.10.0 does not have the SHAR documentation page."
+    },
+    {
+        "origin": "You can find the documentation page SHAR on the main version. Click [here](/docs/datasets/main/en/shar) to redirect to the main version of the documentation.",
+        "similar": "The SHAR documentation page can be accessed from the main version. To go to the main version of the documentation, click [here](/docs/datasets/main/en/shar)."
+    },
+    {
+        "origin": "No, it doesn't exist in version 2.10.0.",
+        "similar": "Version 2.10.0 does not contain it."
+    },
+    {
+        "origin": "It exists on the main version of the documentation. You can click on the provided link to redirect to the main version of the documentation.",
+        "similar": "The main version of the documentation can be accessed by clicking on the link."
+    },
+    {
+        "origin": "A fingerprint in \ud83e\udd17 Datasets is a unique identifier for a dataset that is updated every time a transform is applied to it. It is computed by combining the fingerprint of the previous state and a hash of the latest transform applied.",
+        "similar": "A fingerprint in Datasets is a distinctive marker for a dataset that is modified each time a transformation is executed on it. It is generated by combining the fingerprint of the prior state and a hash of the most recent transformation carried out."
+    },
+    {
+        "origin": "Fingerprints in \ud83e\udd17 Datasets are computed by hashing the function passed to `map` as well as the `map` parameters (`batch_size`, `remove_columns`, etc.).",
+        "similar": "The `map` parameters (`batch_size`, `remove_columns`, etc.) and the function passed to `map` are used to calculate Fingerprints in \ud83e\udd17 Datasets through hashing."
+    },
+    {
+        "origin": "When a non-hashable transform is used in \ud83e\udd17 Datasets, a random fingerprint is assigned instead, and a warning is raised. The non-hashable transform is considered different from the previous transforms, and as a result, \ud83e\udd17 Datasets will recompute all the transforms.",
+        "similar": "When a non-hashable transform is used in \ud83e\udd17 Datasets, a unique identifier is assigned to it and a warning is issued. This transform is seen as distinct from the prior ones, thus \ud83e\udd17 Datasets will recalculate all the transforms."
+    },
+    {
+        "origin": "One can check the hash of any Python object in \ud83e\udd17 Datasets using the `fingerprint.Hasher` module.",
+        "similar": "The `fingerprint.Hasher` module can be used to generate the hash of any Python object in \ud83e\udd17 Datasets."
+    },
+    {
+        "origin": "The hash in \ud83e\udd17 Datasets is computed by dumping the object using a `dill` pickler and hashing the dumped bytes. The pickler recursively dumps all the variables used in the function, so any change made to an object used in the function will cause the hash to change.",
+        "similar": "The \ud83e\udd17 Datasets hash is generated by taking the object and serializing it with a `dill` pickler, then hashing the resulting bytes. As the pickler recursively dumps all the variables used in the function, any alteration to an object used in the function will cause the hash to be altered."
+    },
+    {
+        "origin": "To avoid recomputing all the transforms in \ud83e\udd17 Datasets, one should ensure that their transforms are serializable with pickle or dill. Additionally, when caching is disabled, one should use `Dataset.save_to_disk()` to save their transformed dataset, or it will be deleted once the session ends.",
+        "similar": "In order to prevent having to recalculate all the transformations in \ud83e\udd17 Datasets, it is necessary to make sure that the transformations are serializable with pickle or dill. Furthermore, when caching is disabled, `Dataset.save_to_disk()` should be used to save the transformed dataset, or else it will be lost when the session ends."
+    },
+    {
+        "origin": "There are several methods for creating and sharing an audio dataset, including creating it from local files in python using Dataset.push_to_hub().",
+        "similar": "Using python, one can create an audio dataset from local files and share it with Dataset.push_to_hub(), among other methods."
+    },
+    {
+        "origin": "Yes, you can share your audio dataset with your team or anyone in the community by creating a dataset repository on the Hugging Face Hub.",
+        "similar": "It is possible to make your audio dataset available to your team or anyone in the community by setting up a dataset repository on the Hugging Face Hub."
+    },
+    {
+        "origin": "The `AudioFolder` builder is a no-code solution for quickly creating an audio dataset with several thousand audio files.",
+        "similar": "The `AudioFolder` builder is a fast way to generate an audio dataset with thousands of audio files without any coding."
+    },
+    {
+        "origin": "The alternative method for creating an audio dataset is by writing a loading script, which is for advanced users and requires more effort and coding.",
+        "similar": "For those who are more experienced and willing to put in extra effort, writing a loading script is another way to create an audio dataset."
+    },
+    {
+        "origin": "You can control access to your dataset by requiring users to share their contact information first, using the Gated datasets feature.",
+        "similar": "Requiring users to provide their contact information before accessing your dataset can be done through the Gated datasets feature."
+    },
+    {
+        "origin": "You can load your own dataset using the paths to your audio files and the `cast_column()` function to take a column of audio file paths and cast it to the `Audio` feature.",
+        "similar": "You can use the `cast_column()` function to take a column of audio file paths and cast it to the `Audio` feature, thereby enabling you to load your own dataset with the paths to your audio files."
+    },
+    {
+        "origin": "You can upload your dataset to the Hugging Face Hub using `Dataset.push_to_hub()`.",
+        "similar": "You can push your dataset to the Hugging Face Hub by utilizing `Dataset.push_to_hub()`."
+    },
+    {
+        "origin": "The metadata file for the `AudioFolder` builder should include a `file_name` column to link an audio file to its metadata.",
+        "similar": "A `file_name` column should be included in the metadata file for the `AudioFolder` builder to link an audio file to its corresponding metadata."
+    },
+    {
+        "origin": "The directory should have a `data` folder with subfolders for each split (`train`, `test`, etc.), and each split folder should contain the audio files and a metadata file with a `file_name` column specifying the relative path to each audio file.",
+        "similar": "A `data` folder should be present in the directory, with subfolders for each split (e.g. `train`, `test`) containing the audio files and a metadata file with a `file_name` column that indicates the relative path of each audio file."
+    },
+    {
+        "origin": "If the audio dataset doesn't have any associated metadata, `AudioFolder` will create a `label` column based on the directory name (language id).",
+        "similar": "`AudioFolder` will generate a `label` column based on the directory name (language id) in the absence of any associated metadata in the audio dataset."
+    },
+    {
+        "origin": "Yes, in that case the `file_name` column in the metadata file should be a full relative path to the audio file, not just its filename.",
+        "similar": "In that situation, the `file_name` column in the metadata file should contain the full relative path to the audio file, not just its name."
+    },
+    {
+        "origin": "The script should define the dataset's splits and configurations, handle downloading and generating the dataset examples, and support streaming mode. The script should be named after the dataset folder and located in the same directory as the `data` folder.",
+        "similar": "The script, named after the dataset folder and located in the same directory as the `data` folder, should be responsible for defining the dataset's splits and configurations, downloading and generating the dataset examples, and providing streaming mode."
+    },
+    {
+        "origin": "The purpose of the my_dataset.py file is not specified in the given document.",
+        "similar": "The given document does not provide any information about the purpose of the my_dataset.py file."
+    },
+    {
+        "origin": "The data folder includes train.tar.gz, test.tar.gz, and metadata.csv.",
+        "similar": "The data folder contains train.tar.gz, test.tar.gz, and metadata.csv as its contents."
+    },
+    {
+        "origin": "You will learn how to create a streamable dataset, create a dataset builder class, create dataset configurations, add dataset metadata, download and define the dataset splits, generate the dataset, and upload the dataset to the Hub.",
+        "similar": "You will be taught how to make a streamable collection of data, devise a dataset constructor class, devise dataset setups, include dataset metadata, download and specify the dataset divisions, generate the dataset, and post the dataset to the Hub."
+    },
+    {
+        "origin": "The base class for datasets generated from a dictionary generator is GeneratorBasedBuilder.",
+        "similar": "GeneratorBasedBuilder serves as the basis for datasets created from a dictionary generator."
+    },
+    {
+        "origin": "The three methods to help create a dataset within the GeneratorBasedBuilder class are _info, _split_generators, and _generate_examples.",
+        "similar": "The GeneratorBasedBuilder class provides three approaches for constructing a dataset, namely _info, _split_generators, and _generate_examples."
+    },
+    {
+        "origin": "To create different configurations for a dataset, use the BuilderConfig class to create a subclass of your dataset.",
+        "similar": "By subclassing your dataset, you can use the BuilderConfig class to generate various configurations for the dataset."
+    },
+    {
+        "origin": "You can define your configurations in the `BUILDER_CONFIGS` class variable inside the GeneratorBasedBuilder class.",
+        "similar": "You can specify your configurations within the `BUILDER_CONFIGS` class variable of the GeneratorBasedBuilder class."
+    },
+    {
+        "origin": "You can load a specific configuration using load_dataset() by specifying the dataset name, configuration name, and split.",
+        "similar": "By providing the dataset name, configuration name, and split, you can employ load_dataset() to load a particular configuration."
+    },
+    {
+        "origin": "You can add metadata to your dataset by defining a DatasetInfo class with information such as description, features, homepage, license, and citation.",
+        "similar": "By creating a DatasetInfo class containing details such as description, features, homepage, license, and citation, you can add metadata to your dataset."
+    },
+    {
+        "origin": "Some important features to include in the DatasetInfo class for an audio loading script are the Audio feature and the sampling rate of the dataset.",
+        "similar": "Including the Audio feature and the sampling rate of the dataset are two essential elements to be included in the DatasetInfo class for an audio loading script."
+    },
+    {
+        "origin": "The purpose of the `_generate_examples` method is to yield examples as (key, example) tuples.",
+        "similar": "The `_generate_examples` method is designed to produce (key, example) pairs as output."
+    },
+    {
+        "origin": "The `load_dataset` function loads a dataset from the Hub.",
+        "similar": "The `load_dataset` function fetches a dataset from the Hub."
+    },
+    {
+        "origin": "TAR archives can be extracted locally using the `extract` method in non-streaming mode and passing the local path to the extracted archive directory to the next step in `gen_kwargs`.",
+        "similar": "The `extract` method in non-streaming mode can be used to extract TAR archives locally, with the local path to the extracted archive directory passed to the next step in `gen_kwargs`."
+    },
+    {
+        "origin": "The DownloadManager class is used to download and extract TAR archives in non-streaming mode.",
+        "similar": "The DownloadManager class facilitates the downloading and unpacking of TAR archives without streaming."
+    },
+    {
+        "origin": "The `download_and_extract()` method should be used to download the metadata file specified in `_METADATA_URL`.",
+        "similar": "The `_METADATA_URL` should be used with the `download_and_extract()` method to download the metadata file."
+    },
+    {
+        "origin": "The SplitGenerator class is used to organize the audio files and metadata in each split.",
+        "similar": "The SplitGenerator class is employed to arrange the audio files and metadata for each split."
+    },
+    {
+        "origin": "The standard names for the splits are `Split.TRAIN`, `Split.TEST`, and `SPLIT.Validation`.",
+        "similar": "The designations for the splits are usually `Split.TRAIN`, `Split.TEST`, and `SPLIT.Validation`."
+    },
+    {
+        "origin": "The `_generate_examples` method is used to access and yield TAR files sequentially, and to associate the metadata in `metadata_path` with the audio files in the TAR file.",
+        "similar": "The `_generate_examples` method is employed to sequentially access and yield TAR files, and to link the metadata from `metadata_path` with the audio files in the TAR file."
+    },
+    {
+        "origin": "The files yielded by iter_archive() are in the form of a tuple of (path, f) where path is a relative path to a file inside the archive, and f is the file object itself.",
+        "similar": "Iter_archive() produces a tuple of (path, f) as output, where path is a relative path to a file within the archive and f is the file object."
+    },
+    {
+        "origin": "To get the full path to the locally extracted file, you need to join the path of the directory where the archive is extracted to and the relative audio file path. This can be done using the os.path.join() function.",
+        "similar": "To obtain the complete route to the locally extracted file, you must combine the directory path where the archive is extracted and the relative audio file path by using the os.path.join() function."
+    },
+    {
+        "origin": "The _generate_examples() method yields examples by iterating over the audio files and metadata, setting the audio feature and the path to the extracted file, and then yielding the result.",
+        "similar": "By looping through the audio files and metadata, the _generate_examples() method produces examples by assigning the audio feature and the path to the extracted file, and then outputting the result."
+    },
+    {
+        "origin": "Dataset streaming allows working with a dataset without downloading it. The data is streamed as you iterate over the dataset.",
+        "similar": "Streaming datasets enable the ability to work with the data without needing to download it, as the iteration over the dataset is done in real-time."
+    },
+    {
+        "origin": "Dataset streaming is helpful when you don't want to wait for an extremely large dataset to download, the dataset size exceeds the amount of available disk space on your computer, or you want to quickly explore just a few samples of a dataset.",
+        "similar": "Streaming datasets is beneficial when you don't want to wait for a huge dataset to download, the size of the dataset surpasses the disk space available on your computer, or you need to quickly analyze a few samples of a dataset."
+    },
+    {
+        "origin": "The benefits of using dataset streaming include faster exploration of datasets, the ability to work with larger datasets without needing to download them, and the ability to work with datasets even if you don't have enough disk space to store them.",
+        "similar": "Dataset streaming offers a range of advantages, such as expedited investigation of datasets, the capacity to handle larger datasets without downloading them, and the possibility of working with datasets even if you don't possess enough disk storage."
+    },
+    {
+        "origin": "To use dataset streaming, you can iterate over the dataset and the data will be streamed as you go. This is especially useful for exploring a dataset or working with a large dataset that you don't want to download.",
+        "similar": "By utilizing dataset streaming, you can traverse through the dataset and the data will be streamed as you progress. This is especially advantageous when investigating a dataset or managing a large dataset that you don't wish to download."
+    },
+    {
+        "origin": "Dataset streaming is available for some datasets, but not all. You should check the documentation for the specific dataset you are interested in to see if streaming is available.",
+        "similar": "It is not guaranteed that streaming is available for all datasets, so you should consult the documentation of the particular dataset you are interested in to find out if streaming is an option."
+    },
+    {
+        "origin": "The dataset is 1.2 terabytes.",
+        "similar": "The dataset is of 1.2 terabytes in size."
+    }
+]
