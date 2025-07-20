@@ -188,33 +188,12 @@ def adapt(llm_handler, cache_data_convert, update_cache_callback, *args, **kwarg
             norm2 = np.linalg.norm(cache_data.embedding_data)
             s = dot_product / (norm1 * norm2)
 
-            # if flag:
-            #     _,cur_repr = time_cal(
-            #         chat_cache.similarity_evaluation.evaluation,
-            #         func_name="evaluation",
-            #         report_func=chat_cache.report.evaluation,
-            #     )(
-            #         cur_context_data,# eval_query_data,
-            #         None,# eval_cache_data,
-            #         extra_param=context.get("evaluation_func", None),
-            #     )
 
             if flag:
                 if context_res is None and s<threshold:
                     continue
                 if context_res is not None and s<dialuoge_threshold:
                     continue
-
-                # rank,_ = time_cal(
-                #     chat_cache.similarity_evaluation.evaluation,
-                #     func_name="evaluation",
-                #     report_func=chat_cache.report.evaluation,
-                # )(
-                #     cache_data.context_data,# eval_cache_data,
-                #     # cur_context_data,
-                #     cur_repr,
-                #     extra_param=context.get("evaluation_func", None),
-                # )
 
                 rank = time_cal(
                     chat_cache.similarity_evaluation.evaluation,
@@ -239,12 +218,6 @@ def adapt(llm_handler, cache_data_convert, update_cache_callback, *args, **kwarg
                     cache_answers.append(
                         (float(rank+s), cache_data.answers[0].answer, search_data, cache_data)
                     )
-                    # rank_data.append((rank,1))
-                    
-                # if s>0.7:
-                #     cache_answers.append(
-                #         (float(s), cache_data.answers[0].answer, search_data, cache_data)
-                #     )
                 
             else:
                 rank = time_cal(
