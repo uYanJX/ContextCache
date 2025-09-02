@@ -67,6 +67,8 @@ class CacheData:
     answers: List[Answer]
     embedding_data: Optional[np.ndarray] = None
     context_data: Optional[np.ndarray] = None
+    cur_id: Optional[int] = None
+    pre_id: Optional[int] = None
     session_id: Optional[str] = None
     create_on: Optional[datetime] = None
     last_access: Optional[datetime] = None
@@ -77,6 +79,8 @@ class CacheData:
         answers,
         embedding_data=None,
         context_data=None,
+        cur_id=None,
+        pre_id=None,
         session_id=None,
         create_on=None,
         last_access=None,
@@ -94,6 +98,8 @@ class CacheData:
                 self.answers.append(Answer(answer=data))
         self.embedding_data = embedding_data
         self.context_data = context_data
+        self.cur_id = cur_id
+        self.pre_id = pre_id
         self.session_id = session_id
         self.create_on = create_on
         self.last_access = last_access

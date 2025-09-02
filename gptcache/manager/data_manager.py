@@ -36,6 +36,8 @@ class DataManager(metaclass=ABCMeta):
             answers: List[Any],
             embedding_datas: List[Any],
             context_datas: List[Any],
+            cur_ids: List[Any],
+            pre_ids: List[Any],
             session_ids: List[Optional[str]],
     ):
         pass
@@ -461,7 +463,7 @@ class SSDataManager(DataManager):
         if self.eviction_manager.check_evict():
             self.eviction_manager.delete()
 
-    def save(self, question, answer, embedding_data, context_data,**kwargs):
+    def save(self, question, answer, embedding_data, context_data, cur_id, pre_id, **kwargs):
         """Save the data and vectors to cache and vector storage.
 
         :param question: question data.
@@ -482,7 +484,7 @@ class SSDataManager(DataManager):
         """
         session = kwargs.get("session", None)
         session_id = session.name if session else None
-        self.import_data([question], [answer], [embedding_data], [context_data], [session_id])
+        self.import_data([question], [answer], [embedding_data], [context_data], [cur_id], [pre_id], [session_id])
 
     def _process_answer_data(self, answers: Union[Answer, List[Answer]]):
         if isinstance(answers, Answer):
@@ -513,6 +515,8 @@ class SSDataManager(DataManager):
         answers: List[Answer],
         embedding_datas: List[Any],
         context_datas: List[Any],
+        cur_ids: List[Any],
+        pre_ids: List[Any],
         session_ids: List[Optional[str]],
     ):
         if (
@@ -536,6 +540,8 @@ class SSDataManager(DataManager):
                     answers=ans,
                     embedding_data=embedding_data.astype("float32"),
                     context_data=context_datas[i].astype("float32"),
+                    cur_id=cur_ids[i],
+                    pre_id=pre_ids[i],
                     session_id=session_ids[i],
                 )
             )
@@ -625,3 +631,80 @@ class SSDataManager(DataManager):
     def close(self):
         self.s.close()
         self.v.close()
+
+
+    ## new add
+    def search_by_question(self, question_keyword: str, limit: int = 10):
+        """Search cache data based on question keyword"""
+        return self.s.search_by_question(question_keyword, limit)
+
+    def get_data_by_cur_id(self, cur_id: int):
+        """Get cache data details based on cur_id"""
+        return self.s.get_data_by_cur_id(cur_id)
+
+    def delete_by_cur_id(self, cur_id: int) -> bool:
+        """Delete cache data based on cur_id (including vector data)"""
+        # First get the data to delete
+        cache_data = self.s.get_data_by_cur_id(cur_id)
+        if cache_data is None:
+            return False
+            
+        # Delete data from SQL
+        sql_deleted = self.s.delete_by_cur_id(cur_id)
+        
+        # Delete vector data
+        if sql_deleted and hasattr(cache_data, 'db_id'):
+            try:
+                self.v.delete([cache_data.db_id])
+            except Exception as e:
+                print(f"Error occurred while deleting vector data: {e}")
+                
+        return sql_deleted
+    
+    def count(self, state: int = 0, is_all: bool = False) -> int:
+        """Get total count of cache entries"""
+        try:
+            return self.s.count(state=state, is_all=is_all)
+        except Exception as e:
+            print(f"Error getting cache count: {e}")
+            return 0
+    
+    def get_total_entries(self) -> int:
+        """Get total number of active cache entries"""
+        return self.count(state=0, is_all=False)
+    
+    def get_all_cache_entries(self, limit: int = 100, offset: int = 0) -> List:
+        """Get all cache entries without keyword filtering"""
+        try:
+            # 直接从数据库获取所有未删除的条目
+            with self.s.Session() as session:
+                results = session.query(self.s._ques).filter(
+                    self.s._ques.deleted == 0
+                ).order_by(self.s._ques.create_on.desc()).offset(offset).limit(limit).all()
+                
+                cache_data_list = []
+                for qs in results:
+                    # Get corresponding answers
+                    ans = session.query(self.s._answer.answer, self.s._answer.answer_type).filter(
+                        self.s._answer.question_id == qs.id
+                    ).all()
+                    
+                    res_ans = [(item.answer, item.answer_type) for item in ans]
+                    
+                    cache_data = CacheData(
+                        question=qs.question,
+                        answers=res_ans,
+                        embedding_data=np.frombuffer(qs.embedding_data, dtype=np.float32) if qs.embedding_data else None,
+                        context_data=np.frombuffer(qs.context_data, dtype=np.float32).reshape(-1, 768) if qs.context_data else None,
+                        cur_id=qs.cur_id,
+                        pre_id=qs.pre_id,
+                        create_on=qs.create_on,
+                        last_access=qs.last_access,
+                    )
+                    cache_data.db_id = qs.id
+                    cache_data_list.append(cache_data)
+                    
+                return cache_data_list
+        except Exception as e:
+            print(f"Error getting all cache entries: {e}")
+            return []

@@ -122,14 +122,14 @@ class ChatCompletion(openai.ChatCompletion, BaseCacheLLM):
             return _construct_resp_from_cache(cache_data, saved_token)
 
         kwargs = cls.fill_base_args(**kwargs)
-        ans = adapt(
+        ans, is_hit, retrival_id_query, retrival_id_context = adapt(
             cls._llm_handler,
             cache_data_convert,
             cls._update_cache_callback,
             *args,
             **kwargs,
         )
-        return ans[0],ans[1]
+        return ans, is_hit, retrival_id_query, retrival_id_context
 
     @classmethod
     async def acreate(cls, *args, **kwargs):

@@ -38,9 +38,7 @@ class Config:
             self,
             log_time_func: Optional[Callable[[str, float], None]] = None,
             similarity_threshold: float = 0.75,
-            similarity_threshold_rerank: float = 0.8,
-            dialuoge_threshold: float = 0.5,
-            dialuoge_threshold_rerank: float = 0.7,
+            dialuoge_threshold: float = 0.6,
             prompts: Optional[List[str]] = None,
             template: Optional[str] = None,
             auto_flush: int = 20,
@@ -50,7 +48,8 @@ class Config:
             skip_list: List[str] = None,
             data_check: bool = False,
             disable_report: bool = False,
-            test_mymodel: bool = True
+            method: str = "mean", # or "attention",
+            model_name: str = "qwq",
     ):
         if similarity_threshold < 0 or similarity_threshold > 1:
             raise CacheError(
@@ -71,7 +70,11 @@ class Config:
         self.disable_report = disable_report
         
         # new_added
-        self.similarity_threshold_rerank = similarity_threshold_rerank
         self.dialuoge_threshold = dialuoge_threshold
-        self.dialuoge_threshold_rerank = dialuoge_threshold_rerank
-        self.test_mymodel = test_mymodel
+        self.method = method
+        self.model_name = model_name
+        self.context_emb = None
+        self.cur_id = 0
+        self.set_use_api = False
+        self.context_q = []
+        self.context_a = []

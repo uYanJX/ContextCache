@@ -64,7 +64,10 @@ def get_models(table_prefix, db_type, table_len_config):
         create_on = Column(DateTime, default=datetime.now)
         last_access = Column(DateTime, default=datetime.now)
         embedding_data = Column(LargeBinary, nullable=True)
+        # new add
         context_data = Column(LargeBinary, nullable=True)
+        cur_id = Column(Integer, default=0)
+        pre_id = Column(Integer, default=0)
         deleted = Column(Integer, default=0)
 
     class AnswerTable(DynamicBase):
@@ -233,7 +236,9 @@ class SQLStorage(CacheStorage):
             else None,
             context_data=data.context_data.tobytes()
             if data.context_data is not None
-            else None
+            else None,
+            cur_id=data.cur_id,
+            pre_id=data.pre_id,
         )
         session.add(ques_data)
         session.flush()
@@ -321,6 +326,8 @@ class SQLStorage(CacheStorage):
                 answers=res_ans,
                 embedding_data=np.frombuffer(qs.embedding_data, dtype=np.float32),
                 context_data=np.frombuffer(qs.context_data, dtype=np.float32).reshape(-1,768),
+                cur_id=qs.cur_id,
+                pre_id=qs.pre_id,
                 session_id=session_ids,
                 create_on=qs.create_on,
                 last_access=last_access,
@@ -409,3 +416,104 @@ class SQLStorage(CacheStorage):
         # for UT
         with self.Session() as session:
             return session.query(func.count(self._answer.id)).scalar()
+
+    def search_by_question(self, question_keyword: str, limit: int = 10):
+        """Search cache data based on question keyword"""
+        with self.Session() as session:
+            results = session.query(self._ques).filter(
+                self._ques.question.like(f"%{question_keyword}%")
+            ).filter(self._ques.deleted == 0).limit(limit).all()
+            
+            cache_data_list = []
+            for qs in results:
+                # Get corresponding answers
+                ans = session.query(self._answer.answer, self._answer.answer_type).filter(
+                    self._answer.question_id == qs.id
+                ).all()
+                
+                # Get dependencies
+                deps = session.query(
+                    self._ques_dep.dep_name,
+                    self._ques_dep.dep_data, 
+                    self._ques_dep.dep_type,
+                ).filter(self._ques_dep.question_id == qs.id).all()
+                
+                res_ans = [(item.answer, item.answer_type) for item in ans]
+                res_deps = [
+                    QuestionDep(item.dep_name, item.dep_data, item.dep_type)
+                    for item in deps
+                ]
+                
+                cache_data = CacheData(
+                    question=qs.question if not deps else Question(qs.question, res_deps),
+                    answers=res_ans,
+                    embedding_data=np.frombuffer(qs.embedding_data, dtype=np.float32) if qs.embedding_data else None,
+                    context_data=np.frombuffer(qs.context_data, dtype=np.float32).reshape(-1, 768) if qs.context_data else None,
+                    cur_id=qs.cur_id,
+                    pre_id=qs.pre_id,
+                    create_on=qs.create_on,
+                    last_access=qs.last_access,
+                )
+                # Attach database ID for delete operations
+                cache_data.db_id = qs.id
+                cache_data_list.append(cache_data)
+                
+            return cache_data_list
+
+    def get_data_by_cur_id(self, cur_id: int) -> Optional[CacheData]:
+        """Get cache data based on cur_id"""
+        with self.Session() as session:
+            qs = session.query(self._ques).filter(
+                self._ques.cur_id == cur_id
+            ).filter(self._ques.deleted == 0).first()
+            
+            if qs is None:
+                return None
+                
+            # Get answers
+            ans = session.query(self._answer.answer, self._answer.answer_type).filter(
+                self._answer.question_id == qs.id
+            ).all()
+            
+            # Get dependencies
+            deps = session.query(
+                self._ques_dep.dep_name,
+                self._ques_dep.dep_data,
+                self._ques_dep.dep_type,
+            ).filter(self._ques_dep.question_id == qs.id).all()
+            
+            res_ans = [(item.answer, item.answer_type) for item in ans]
+            res_deps = [
+                QuestionDep(item.dep_name, item.dep_data, item.dep_type)
+                for item in deps
+            ]
+            
+            cache_data = CacheData(
+                question=qs.question if not deps else Question(qs.question, res_deps),
+                answers=res_ans,
+                embedding_data=np.frombuffer(qs.embedding_data, dtype=np.float32) if qs.embedding_data else None,
+                context_data=np.frombuffer(qs.context_data, dtype=np.float32).reshape(-1, 768) if qs.context_data else None,
+                cur_id=qs.cur_id,
+                pre_id=qs.pre_id,
+                create_on=qs.create_on,
+                last_access=qs.last_access,
+            )
+            # Attach database ID
+            cache_data.db_id = qs.id
+            return cache_data
+
+    def delete_by_cur_id(self, cur_id: int) -> bool:
+        """Delete cache data based on cur_id"""
+        with self.Session() as session:
+            # Find record to delete
+            qs = session.query(self._ques).filter(
+                self._ques.cur_id == cur_id
+            ).filter(self._ques.deleted == 0).first()
+            
+            if qs is None:
+                return False
+                
+            # Mark as deleted
+            qs.deleted = -1
+            session.commit()
+            return True

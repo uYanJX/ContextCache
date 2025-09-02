@@ -8,16 +8,16 @@ from gptcache.embedding.string import to_embeddings as string_embedding
 from gptcache.manager import get_data_manager
 from gptcache.manager.data_manager import DataManager
 from gptcache.processor.post import temperature_softmax
-from gptcache.processor.pre import last_content, all_content_list
+from gptcache.processor.pre import last_content
 from gptcache.report import Report
 from gptcache.similarity_evaluation import ExactMatchEvaluation
 from gptcache.similarity_evaluation import SimilarityEvaluation
-from gptcache.similarity_evaluation import DialogueMatchEvaluation
-from gptcache.similarity_evaluation import ContextMatchEvaluation
 from gptcache.utils import import_openai
 from gptcache.utils.cache_func import cache_all
 from gptcache.utils.log import gptcache_log
-
+from gptcache.processor.context.summarization_context import (
+    SummarizationContextProcess,
+)
 
 class Cache:
     """GPTCache core object.
@@ -53,7 +53,7 @@ class Cache:
         pre_func=None,
         embedding_func=string_embedding,
         data_manager: DataManager = get_data_manager(),
-        similarity_evaluation= ContextMatchEvaluation(),
+        similarity_evaluation = None,
         post_process_messages_func=temperature_softmax,
         post_func=None,
         config=Config(),
@@ -81,6 +81,7 @@ class Cache:
         self.post_process_messages_func = post_func if post_func else post_process_messages_func
         self.config = config
         self.next_cache = next_cache
+        self.input_summarizer = SummarizationContextProcess()
 
         @atexit.register
         def close():
@@ -102,33 +103,52 @@ class Cache:
         newanswers = []
         newemb = []
         newcontext = []
+        cur_ids = []
+        pre_ids = []
+        cur = self.config.cur_id
+        text_length = self.config.input_summary_len
         for i,question in enumerate(questions):
             if isinstance(question, str):
                 newquestions.append(question)
+                cur_ids.append(cur)
+                pre_ids.append(-1)
+                cur += 1
                 newanswers.append(answers[i])
+                if len(question) > text_length:
+                    question = self.input_summarizer.summarize_to_sentence([question], text_length)
                 emb = self.embedding_func(question)
                 newemb.append(emb)
                 newcontext.append(np.array([emb]))
-            elif isinstance(question, list):
+            elif isinstance(question, list): # dialuoge
                 tmp = []
                 for j,q in enumerate(question):
-                    if len(q)>512:
-                        q = q[len(q)-512:len(q)]
+                    if len(q) > text_length:
+                        q = self.input_summarizer.summarize_to_sentence([q], text_length)
                     emb = self.embedding_func(q)
                     tmp.append(emb)
-                newquestions.append(question[-1])
-                newanswers.append(answers[i])
-                newemb.append(tmp[-1])
-                newcontext.append(np.array(tmp))                
-
+                    cur_ids.append(cur)
+                    if j == 0:
+                        pre_ids.append(-1)
+                    else:
+                        pre_ids.append(cur - 1)
+                    cur += 1
+                    newquestions.append(q)
+                    newanswers.append(answers[i][j])
+                    newemb.append(tmp[-1])
+                    if len(tmp) >5:
+                        tmp = tmp[-5:]
+                    newcontext.append(np.array(tmp))                
             else:
                 raise ValueError("question type not supported")
-               
+
+        self.config.cur_id = cur
         self.data_manager.import_data(
             questions=newquestions,
             answers=newanswers,
             embedding_datas=newemb,
             context_datas=newcontext,
+            cur_ids=cur_ids,
+            pre_ids=pre_ids,
             session_ids=session_ids if session_ids else [None for _ in range(len(newquestions))],
         )
 
@@ -141,11 +161,11 @@ class Cache:
             self.next_cache.data_manager.flush()
 
     @staticmethod
-    def set_openai_key():
+    def set_openai_key(key_str="", api_base="http://127.0.0.1:8000/v1"):
         import_openai()
         import openai  # pylint: disable=C0415
-        openai.api_key = "xxx"
-        openai.api_base = os.getenv("OPENAI_API_URL", "http://localhost:9000/v1")
+        openai.api_key = os.getenv("OPENAI_API_KEY", key_str)
+        openai.api_base = os.getenv("OPENAI_API_URL", api_base)
         
     @staticmethod
     def set_azure_openai_key():
