@@ -1,0 +1,6 @@
+{
+  "selected_backend": "turn_adapter",
+  "checkpoint_path": "checkpoints/turn_adapter",
+  "base_model": "Qwen/Qwen3-Embedding-0.6B",
+  "recommended_threshold": 0.85
+}

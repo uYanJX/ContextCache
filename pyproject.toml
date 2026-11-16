@@ -1,0 +1,45 @@
+[project]
+name = "contextcache"
+version = "0.3.0"
+description = "ContextCache: Context-Aware Semantic Cache for Multi-Turn Queries in Large Language Models"
+authors = []
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26.0",
+    "torch>=2.2.0",
+    "transformers>=4.51.0",
+    "peft>=0.13.0",
+    "safetensors>=0.4.3",
+    "hnswlib>=0.8.0",
+    "scipy>=1.10.0",
+    "scikit-learn>=1.2.0",
+    "statsmodels>=0.14.0",
+    "typing-extensions>=4.10.0",
+    "psutil>=5.9.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/uYanJX/ContextCache"
+Paper = "https://doi.org/10.14778/3750601.3750679"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pandas>=2.0.0",
+    "matplotlib>=3.7.0",
+    "datasets>=3.0.0",
+    "tqdm>=4.66.0",
+]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["vcache*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"

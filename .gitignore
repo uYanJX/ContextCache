@@ -1,0 +1,37 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Large intermediate training caches & unsharded weights
+models/
+data/train_triplets.jsonl
+data/val_triplets.jsonl
+data/*.npz
+data/raw/
+data/embeddings_cache/
+checkpoints/**/*.pt
+checkpoints/turn_adapter/model.safetensors
+*.bin
+*.pt.tmp
+
+# Local workspaces, build docs & raw JSON/TXT logs
+.agents/
+.aris/
+.research/
+AGENTS.md
+docs/
+results/*.json
+results/*.txt
+
+# OS / editor
+.DS_Store
+*.swp

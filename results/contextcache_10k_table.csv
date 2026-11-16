@@ -1,0 +1,6 @@
+method,valid_hit_rate,precision,recall,f1_score,lru2000_valid_hit_rate
+query_only,0.2245,0.3551,0.7018,0.4716,0.2086
+concat,0.1778,0.4695,0.3668,0.4119,0.1358
+turn_mean,0.2046,0.8049,0.3396,0.4777,0.1352
+contextcache,0.3138,0.9022,0.5149,0.6557,0.2298
+contextcache+,0.5235,0.8754,0.9100,0.8924,0.4909

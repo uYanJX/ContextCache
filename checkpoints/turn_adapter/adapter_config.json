@@ -1,0 +1,9 @@
+{
+  "embed_dim": 1024,
+  "hidden_dim": 1024,
+  "num_heads": 8,
+  "num_layers": 3,
+  "max_turns": 8,
+  "dropout": 0.1,
+  "use_isotropic_head": false
+}

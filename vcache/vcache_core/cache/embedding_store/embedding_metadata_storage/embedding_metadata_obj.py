@@ -1,0 +1,92 @@
+from datetime import datetime, timezone
+from typing import List, Optional, Tuple
+
+
+class EmbeddingMetadataObj:
+    """
+    Metadata object for storing embedding-related information and statistics.
+    """
+
+    def __init__(
+        self,
+        embedding_id: int,
+        response: str,
+        last_accessed: Optional[datetime] = None,
+        id_set: int = -1,
+        cost: Optional[float] = None,
+    ):
+        """Initializes the embedding metadata object.
+
+        Args:
+            embedding_id (int): The unique identifier for the embedding.
+            response (str): The response associated with the embedding.
+            last_accessed (Optional[datetime]): The timestamp of the last access
+                to this embedding. If not provided, the current time in UTC is
+                used.
+            id_set (int): The set identifier for the embedding. This is used in the
+                benchmark to identify if the nearest neighbor is from the same set
+                (if the cached response is correct or incorrect).
+            cost (Optional[float]): The cost (e.g. LLM inference latency in
+                seconds) that was incurred to generate the cached response. Used
+                by cost-aware eviction policies to avoid evicting expensive-to
+                -regenerate responses. If unknown, treated as free by such
+                policies.
+        """
+
+        #### Core metadata ###################################################
+        self.embedding_id: int = embedding_id
+        self.response: str = response
+
+        #### Benchmark metadata ##############################################
+        self.id_set: int = id_set
+
+        #### vCache Bayesian Policy ##########################################
+        self.observations: List[Tuple[float, int]] = []  # (similarity, label)
+        self.observations.append((0.0, 0))
+        self.observations.append((1.0, 1))
+        self.gamma: float = None
+        self.t_hat: float = None
+        self.t_prime: float = None
+        self.var_t: float = None
+
+        #### Metadata for the eviction policy ################################
+        self.last_accessed: Optional[datetime] = (
+            last_accessed if last_accessed is not None else datetime.now(timezone.utc)
+        )
+        self.created_at: datetime = datetime.now(timezone.utc)
+        self.usage_count: int = 0
+        self.cost: Optional[float] = cost
+
+    def __eq__(self, other: object) -> bool:
+        """Checks for equality with another EmbeddingMetadataObj.
+
+        Args:
+            other (object): The object to compare with.
+
+        Returns:
+            bool: True if the objects are equal, False otherwise.
+        """
+        if not isinstance(other, EmbeddingMetadataObj):
+            return False
+        return (
+            self.embedding_id == other.embedding_id
+            and self.response == other.response
+            and self.last_accessed == other.last_accessed
+        )
+
+    def __repr__(self) -> str:
+        """Returns a string representation of the object.
+
+        Returns:
+            str: A string representation of the EmbeddingMetadataObj.
+        """
+        return f"""
+        EmbeddingMetadataObj(
+            embedding_id={self.embedding_id},
+            response={self.response},
+            last_accessed={self.last_accessed},
+            len(observations)={len(self.observations)},
+            observations={self.observations},
+            gamma={self.gamma},
+        )
+        """

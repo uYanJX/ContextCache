@@ -1,0 +1,44 @@
+{
+  "model_type": "Qwen3ContextLoRA",
+  "base_model": "Qwen/Qwen3-Embedding-0.6B",
+  "lora_r": 16,
+  "lora_alpha": 32,
+  "trainable_params": 10092544,
+  "train_seconds": 1337.32,
+  "init_val": {
+    "triplet_acc": 0.684,
+    "pos_sim": 0.8899185585975647,
+    "same_ctx_neg_sim": 0.8544681535959244,
+    "cross_ctx_neg_sim": 0.7101432182788849,
+    "margin": 0.03545040500164032
+  },
+  "best_val": {
+    "triplet_acc": 1.0,
+    "pos_sim": 0.9418558753728866,
+    "same_ctx_neg_sim": 0.5594070611894131,
+    "cross_ctx_neg_sim": 0.578670692384243,
+    "margin": 0.36318518298864366,
+    "epoch": 2,
+    "opt_step": 512
+  },
+  "history": [
+    {
+      "triplet_acc": 1.0,
+      "pos_sim": 0.9423623492717743,
+      "same_ctx_neg_sim": 0.5370778528451919,
+      "cross_ctx_neg_sim": 0.5833124175071717,
+      "margin": 0.35904993176460265,
+      "epoch": 1,
+      "opt_step": 256
+    },
+    {
+      "triplet_acc": 1.0,
+      "pos_sim": 0.9418558753728866,
+      "same_ctx_neg_sim": 0.5594070611894131,
+      "cross_ctx_neg_sim": 0.578670692384243,
+      "margin": 0.36318518298864366,
+      "epoch": 2,
+      "opt_step": 512
+    }
+  ]
+}
